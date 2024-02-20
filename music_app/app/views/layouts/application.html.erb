@@ -9,7 +9,19 @@
     <%= stylesheet_link_tag "application" %>
   </head>
 
+  <header>
+    <h1>Music App</h1>
+  </header>
+
+  <nav>
+    <% if !logged_in? %>
+      <input type="button" value="log in">
+    <% else %>
+      <input type="button" value="log out">
+    <% end %>
+  </nav>
   <body>
+
     <%= yield %>
   </body>
 </html>
