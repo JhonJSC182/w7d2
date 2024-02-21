@@ -29,24 +29,24 @@ class User < ApplicationRecord
 
     def password=(password)
         @password = password
-        password_digest = Bcrypt::Password.create(password)
+        self.password_digest = BCrypt::Password.create(password)
     end
 
     def is_password?(password)
-        db_pass = Bcrypt::Password.new(password_digest)
+        db_pass = BCrypt::Password.new(password_digest)
         db_pass.is_password?(password)
     end
 
     def reset_session_token
-        session_token = generate_session_token
+        self.session_token = generate_session_token
         self.save!
-        session_token
+        self.session_token
     end
 
     private
 
     def ensure_session_token
-        session_token ||= generate_session_token
+        self.session_token ||= generate_session_token
     end
 
     def generate_session_token

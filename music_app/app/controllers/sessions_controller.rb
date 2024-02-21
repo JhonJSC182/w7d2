@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     def create
         email = params[:user][:email]
         password = params[:user][:password]
-        @user = user.find_by_credentials(email, password)
+        @user = User.find_by_credentials(email, password)
         if @user
             log_in(@user)
             redirect_to user_url(@user)
